@@ -20,7 +20,7 @@ export class AppComponent implements OnInit{
   counter: number;
   topic: string;
   recievedMessage:Message[] =[];
-  notifs:AppNotification[] =[];
+  notifs:any[] =[];
   messageId: string;
 
   constructor(private notificationService: NotificationService,
@@ -57,14 +57,14 @@ export class AppComponent implements OnInit{
   }
 
 
-  notify(message: AppNotification): void {
+  notify(message: any): void {
     this.notifs.push(message);
     Swal.fire({
       position: 'top-end',
       icon: 'success',
-      title: message.content,
+      title: ' "'+message.sender.username +'" has invited you to join his staff team for the event "'+ message.eventDto.name+ '"',
       showConfirmButton: false,
-      timer: 1500
+      timer: 4000
     })
 
   }
